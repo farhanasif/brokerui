@@ -11,12 +11,8 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import { Appbar, Searchbar, List, Button } from 'react-native-paper';
-import Constants from 'expo-constants';
-import { Ionicons } from '@expo/vector-icons';
-
-// or any pure javascript modules available in npm
-import { Card } from 'react-native-paper';
+import { Appbar, Searchbar } from 'react-native-paper';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const STORAGE_KEY = 'MYKEY';
 const STORAGE_ROLE = 'MYROLE';
@@ -44,7 +40,7 @@ export default class HomeComponent extends React.Component {
     this.arrayholder = [];
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.load();
   }
 

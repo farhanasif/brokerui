@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { Appbar, Searchbar, List, Button } from 'react-native-paper';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+//import { ScrollView } from 'react-native-gesture-handler';
 
 const { height, width } = Dimensions.get('window');
 
@@ -42,16 +43,19 @@ export default class DetailsComponent extends Component {
     const { item } = this.state;
     return (
       <View style={{ flex: 1, backgroundColor:'#FFF' }}>
-        <Appbar.Header style={styles.bottom}>
-          <Appbar.BackAction onPress={this._goBack} />
-          <Appbar.Content
-            title={item.MKISTAT_INSTRUMENT_CODE}
-            subtitle="XYZ Company Limited"
-          />
-          <Appbar.Action icon="search" onPress={this._onSearch} />
-          <Appbar.Action icon="more-vert" onPress={this._onMore} />
-        </Appbar.Header>
-        <View style={{ backgroundColor: '#FFF' }}>
+        <View>
+          <Appbar.Header style={styles.bottom}>
+            <Appbar.BackAction onPress={this._goBack} />
+            <Appbar.Content
+              title={item.MKISTAT_INSTRUMENT_CODE}
+              subtitle="XYZ Company Limited"
+            />
+            <Appbar.Action icon="search" onPress={this._onSearch} />
+            <Appbar.Action icon="more-vert" onPress={this._onMore} />
+          </Appbar.Header>
+        </View>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, marginBottom: 160, paddingBottom: 100, }}>
+          <View style={{ backgroundColor: '#FFF' }}>
           <View
             style={{
               flexDirection: 'row',
@@ -202,7 +206,50 @@ export default class DetailsComponent extends Component {
               </View>
             </View>
           </View>
-        </View>
+          <View style={{padding: 2}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginHorizontal: 5,
+                paddingTop: 5,
+              }}>
+              <View
+                style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                <Text>No. of Shares:</Text>
+                <Text>1500000</Text>
+              </View>
+              <View
+                style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                <Text>Paid-Up Capital (mn):</Text>
+                <Text>13503</Text>
+              </View>
+            </View>
+          </View>
+
+          <View style={{padding: 2}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginHorizontal: 5,
+                paddingTop: 5,
+              }}>
+              <View
+                style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                <Text>No. of Shares:</Text>
+                <Text>1500000</Text>
+              </View>
+              <View
+                style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                <Text>Paid-Up Capital (mn):</Text>
+                <Text>13503</Text>
+              </View>
+            </View>
+          </View>
+          </View>
+        </ScrollView>
+        
         <View style={styles.footer}>
           <TouchableOpacity>
             <View

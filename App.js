@@ -1,14 +1,59 @@
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import * as React from 'react';
+import { BottomNavigation, Text } from 'react-native-paper';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import HomeComponent from './components/HomeComponent';
+import DetailsComponent from './components/DetailsComponent';
 
-export default class App extends Component {
+const MusicRoute = () => <Text>Music</Text>;
+
+const AlbumsRoute = () => <Text>Albums</Text>;
+
+const RecentsRoute = () => <Text>Recents</Text>;
+
+const NavigatorMenu = createStackNavigator(
+  {
+    Home: {
+      screen: HomeComponent,
+    },
+    Details: {
+      screen: DetailsComponent,
+    },
+  },
+  {
+    initialRouteName: 'Home',
+    headerMode: 'none',
+  },
+);
+
+const AppContainer = createAppContainer(NavigatorMenu);
+
+export default class App extends React.Component {
+  state = {
+    index: 0,
+    routes: [
+      { key: 'market', title: 'Market', icon: 'business', color: '#000' },
+      { key: 'albums', title: 'News', icon: 'web', color: '#000' },
+      { key: 'recents', title: 'Portfolio', icon: 'inbox', color: '#000' },
+      { key: 'more', title: 'More', icon: 'reorder', color: '#000' },
+    ],
+  };
+
+  _handleIndexChange = index => this.setState({ index });
+
+  _renderScene = BottomNavigation.SceneMap({
+    market: AppContainer,
+    albums: AlbumsRoute,
+    recents: RecentsRoute,
+    more: RecentsRoute,
+  });
+
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Icon name="comments" size={30} color="#900" />
-        <Text>This is a test!</Text>
-      </View>
+      <BottomNavigation
+        navigationState={this.state}
+        onIndexChange={this._handleIndexChange}
+        renderScene={this._renderScene}
+      />
     );
   }
 }
