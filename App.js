@@ -3,6 +3,7 @@ import { BottomNavigation, Text } from 'react-native-paper';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HomeComponent from './components/HomeComponent';
 import DetailsComponent from './components/DetailsComponent';
+import NewsComponent from './components/NewsComponent';
 
 const MusicRoute = () => <Text>Music</Text>;
 
@@ -32,7 +33,7 @@ export default class App extends React.Component {
     index: 0,
     routes: [
       { key: 'market', title: 'Market', icon: 'business', color: '#000' },
-      { key: 'albums', title: 'News', icon: 'web', color: '#000' },
+      { key: 'news', title: 'News', icon: 'web', color: '#000' },
       { key: 'recents', title: 'Portfolio', icon: 'inbox', color: '#000' },
       { key: 'more', title: 'More', icon: 'reorder', color: '#000' },
     ],
@@ -42,7 +43,7 @@ export default class App extends React.Component {
 
   _renderScene = BottomNavigation.SceneMap({
     market: AppContainer,
-    albums: AlbumsRoute,
+    news: NewsComponent,
     recents: RecentsRoute,
     more: RecentsRoute,
   });
