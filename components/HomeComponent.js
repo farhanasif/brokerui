@@ -4,7 +4,7 @@ import {
   View,
   StyleSheet,
   AsyncStorage,
-  Modal,
+  ActivityIndicator,
   ScrollView,
   FlatList,
   RefreshControl,
@@ -35,6 +35,7 @@ export default class HomeComponent extends React.Component {
       data: [],
       error: null,
       showCancel: false,
+      indicator: true,
     };
 
     this.arrayholder = [];
@@ -54,6 +55,7 @@ export default class HomeComponent extends React.Component {
 
   makeRemoteRequest = async () => {
     this.setState({ loading: true });
+    this.setState({ indicator: true });
 
     fetch('https://api.uftcl.com/', {
       method: 'POST',
@@ -74,6 +76,7 @@ export default class HomeComponent extends React.Component {
         this.arrayholder = res;
         //console.log('data');
         console.log(res);
+        this.setState({ indicator: false })
       })
       .catch(error => {
         this.setState({ error, loading: false });
@@ -146,6 +149,10 @@ export default class HomeComponent extends React.Component {
 
   _onMore = () => console.log('Shown more');
 
+  LoadingIndicatorView = () => {
+    return <ActivityIndicator color='green' size='large' style={styles.ActivityIndicatorStyle} />
+  }
+
   render() {
     return (
       <View style={styles.mainviewStyle}>
@@ -154,108 +161,113 @@ export default class HomeComponent extends React.Component {
           <Appbar.Action icon="search" onPress={this._onSearch} />
           <Appbar.Action icon="more-vert" onPress={this._onMore} />
         </Appbar.Header>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingTop: 20,
-          }}>
-          <Text style={styles.TextStyle}> Start Trading Here. </Text>
-        </View>
-        <View style={{ marginTop: 20 }}>
-          <FlatList
-            data={this.state.data}
-            renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => this._onPress(item)}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    marginHorizontal: 20,
-                    paddingTop: 10,
-                  }}>
-                  <Text style={{ fontWeight: '800', fontSize: 15 }}>
-                    {item.MKISTAT_INSTRUMENT_CODE}
-                  </Text>
-                  <Text style={{ fontWeight: '800', fontSize: 15 }}>{`${
-                    item.MKISTAT_PUB_LAST_TRADED_PRICE
-                  }`}</Text>
-                </View>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    marginHorizontal: 20,
-                    paddingVertical: 10,
-                  }}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'flex-start',
-                    }}>
-                    <Ionicons name="md-stopwatch" size={17} color="orange" />
-                    <Text
+        {this.state.indicator === true ? this.LoadingIndicatorView(): (
+          <View>
+            <View
+              style={{
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingTop: 20,
+              }}>
+              <Text style={styles.TextStyle}> Start Trading Here. </Text>
+            </View>
+            <View style={{ marginTop: 20 }}>
+              <FlatList
+                data={this.state.data}
+                renderItem={({ item }) => (
+                  <TouchableOpacity onPress={() => this._onPress(item)}>
+                    <View
                       style={{
-                        fontWeight: '400',
-                        fontSize: 13,
-                        color: 'gray',
-                        marginLeft: 5,
-                      }}>{`YCP : ${item.MKISTAT_YDAY_CLOSE_PRICE} | Openp :${
-                      item.MKISTAT_OPEN_PRICE
-                    }`}</Text>
-                  </View>
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        marginHorizontal: 20,
+                        paddingTop: 10,
+                      }}>
+                      <Text style={{ fontWeight: '800', fontSize: 15 }}>
+                        {item.MKISTAT_INSTRUMENT_CODE}
+                      </Text>
+                      <Text style={{ fontWeight: '800', fontSize: 15 }}>{`${
+                        item.MKISTAT_PUB_LAST_TRADED_PRICE
+                      }`}</Text>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        marginHorizontal: 20,
+                        paddingVertical: 10,
+                      }}>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          justifyContent: 'flex-start',
+                        }}>
+                        <Ionicons name="md-stopwatch" size={17} color="orange" />
+                        <Text
+                          style={{
+                            fontWeight: '400',
+                            fontSize: 13,
+                            color: 'gray',
+                            marginLeft: 5,
+                          }}>{`YCP : ${item.MKISTAT_YDAY_CLOSE_PRICE} | Openp :${
+                          item.MKISTAT_OPEN_PRICE
+                        }`}</Text>
+                      </View>
 
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'flex-start',
-                    }}>
-                    <Ionicons
-                      name={
-                        item.MKISTAT_CLOSE_PRICE -
-                          item.MKISTAT_PUB_LAST_TRADED_PRICE >
-                        0
-                          ? 'md-arrow-dropup'
-                          : 'md-arrow-dropdown'
-                      }
-                      size={20}
-                      color={
-                        item.MKISTAT_CLOSE_PRICE -
-                          item.MKISTAT_PUB_LAST_TRADED_PRICE >
-                        0
-                          ? 'green'
-                          : 'red'
-                      }
-                    />
-                    <Text
-                      style={{
-                        marginLeft: 3,
-                        color:
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          justifyContent: 'flex-start',
+                        }}>
+                        <Ionicons
+                          name={
+                            item.MKISTAT_CLOSE_PRICE -
+                              item.MKISTAT_PUB_LAST_TRADED_PRICE >
+                            0
+                              ? 'md-arrow-dropup'
+                              : 'md-arrow-dropdown'
+                          }
+                          size={20}
+                          color={
+                            item.MKISTAT_CLOSE_PRICE -
+                              item.MKISTAT_PUB_LAST_TRADED_PRICE >
+                            0
+                              ? 'green'
+                              : 'red'
+                          }
+                        />
+                        <Text
+                          style={{
+                            marginLeft: 3,
+                            color:
+                              item.MKISTAT_CLOSE_PRICE -
+                                item.MKISTAT_PUB_LAST_TRADED_PRICE >
+                              0
+                                ? 'green'
+                                : 'red',
+                          }}>{`${(
                           item.MKISTAT_CLOSE_PRICE -
-                            item.MKISTAT_PUB_LAST_TRADED_PRICE >
-                          0
-                            ? 'green'
-                            : 'red',
-                      }}>{`${(
-                      item.MKISTAT_CLOSE_PRICE -
-                      item.MKISTAT_PUB_LAST_TRADED_PRICE
-                    ).toFixed(4)}`}</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            )}
-            keyExtractor={item => item.MKISTAT_INSTRUMENT_NUMBER}
-            ItemSeparatorComponent={this.renderSeparator}
-            ListHeaderComponent={this.renderHeader}
-            refreshControl={
-              <RefreshControl
-                refreshing={this.state.refreshing}
-                onRefresh={this._onRefresh.bind(this)}
+                          item.MKISTAT_PUB_LAST_TRADED_PRICE
+                        ).toFixed(4)}`}</Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                )}
+                keyExtractor={item => item.MKISTAT_INSTRUMENT_NUMBER}
+                ItemSeparatorComponent={this.renderSeparator}
+                ListHeaderComponent={this.renderHeader}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={this.state.refreshing}
+                    onRefresh={this._onRefresh.bind(this)}
+                  />
+                }
               />
-            }
-          />
-        </View>
+            </View>
+          </View>
+        )}
+        
         <View style={styles.footer}>
           <TouchableOpacity>
             <View
@@ -341,4 +353,8 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
   },
+  ActivityIndicatorStyle: {
+    flex: 1,
+    justifyContent: 'center'
+  }
 });

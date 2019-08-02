@@ -5,6 +5,8 @@ import HomeComponent from './components/HomeComponent';
 import DetailsComponent from './components/DetailsComponent';
 import NewsComponent from './components/NewsComponent';
 
+console.disableYellowBox = true;
+
 const MusicRoute = () => <Text>Music</Text>;
 
 const AlbumsRoute = () => <Text>Albums</Text>;

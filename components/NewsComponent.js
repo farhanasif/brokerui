@@ -77,7 +77,6 @@ export default class NewsComponent extends Component {
         return (
             <View>
                 <Appbar.Header style={styles.bottom}>
-                    <Appbar.BackAction onPress={this._goBack}/>
                     <Appbar.Content title="Latest News"/>
                     <Appbar.Action icon="search" onPress={this._onSearch}/>
                     <Appbar.Action icon="more-vert" onPress={this._onMore}/>
