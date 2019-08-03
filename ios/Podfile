@@ -32,6 +32,8 @@ target 'brokerui' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
   target 'brokeruiTests' do
     inherit! :search_paths
     # Pods for testing

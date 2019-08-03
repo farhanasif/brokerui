@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { Appbar, Searchbar } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Config from "react-native-config";
 
 const STORAGE_KEY = 'MYKEY';
 const STORAGE_ROLE = 'MYROLE';
@@ -43,6 +44,7 @@ export default class HomeComponent extends React.Component {
 
   componentDidMount() {
     this.load();
+    //alert(Config.API_URL);
   }
 
   load = async () => {
