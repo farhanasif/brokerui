@@ -135,6 +135,10 @@ export default class WithdrawComponent extends React.Component {
         // });
     }
 
+    _onMore = () => {
+        this.props.navigation.navigate('WithdrawOrder');
+    }
+
     render() {
         const { cash_limit, profile } = this.state;
         return (

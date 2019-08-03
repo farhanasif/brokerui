@@ -11,7 +11,7 @@ import {Appbar} from 'react-native-paper';
 import { Avatar } from 'react-native-elements';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import LinearGradient from 'react-native-linear-gradient';
 
 const list = [
   {
@@ -87,8 +87,14 @@ export default class SettingsComponent extends React.Component {
                     <Appbar.Content title="Settings"/>
                     <Appbar.Action icon="launch" onPress={this._onMore}/>
                 </Appbar.Header>
-                <View style={{flexDirection: 'row', alignItems: 'space-around', justifyContent: 'space-between'}}>
-                    <View style={{padding: 10, marginLeft: 10}}>
+                
+                <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#3a7bd5', '#2F80ED','#3a6073' ]} 
+                  style={{
+                    flexDirection: 'row', 
+                    alignItems: 'space-around', 
+                    justifyContent: 'space-between', 
+                    paddingVertical: 12,}}>  
+                  <View style={{padding: 10, marginLeft: 10}}>
                         <Avatar
                             size="large"
                             rounded
@@ -99,12 +105,13 @@ export default class SettingsComponent extends React.Component {
                         />
                     </View>
                     <View style={{padding: 10, marginRight: 10}}>
-                        <Text style={{fontSize: 20, fontWeight: '800', color: '#1862ae'}}>MD FARHAN ASIF</Text>
-                        <Text style={{fontSize: 14, fontWeight: '200', color: '#1862ae'}}>+880 1717 898989</Text>
-                        <Text style={{fontSize: 14, fontWeight: '200', color: '#1862ae'}}>xyz@gmail.com</Text>
-                        <Text style={{fontSize: 14, fontWeight: '600', color: '#1862ae'}}>CLIENT CODE: 2209073</Text>
+                        <Text style={{fontSize: 20, fontWeight: '800', color: '#fff'}}>MD FARHAN ASIF</Text>
+                        <Text style={{fontSize: 14, fontWeight: '200', color: '#fff'}}>+880 1717 898989</Text>
+                        <Text style={{fontSize: 14, fontWeight: '200', color: '#fff'}}>xyz@gmail.com</Text>
+                        <Text style={{fontSize: 14, fontWeight: '600', color: '#fff'}}>CLIENT CODE: 2209073</Text>
                     </View>
-                </View>
+                  </LinearGradient>
+
                 <View style={styles.container}>
                     <FlatList
                     data={list}
@@ -130,7 +137,7 @@ const styles = StyleSheet.create({
   container: {
     
     //alignItems: 'center',
-    paddingTop: 30,
+    paddingTop: 10,
     backgroundColor: '#ecf0f1',
     padding: 8,
   },
@@ -159,5 +166,8 @@ const styles = StyleSheet.create({
   },
   bottom: {
     backgroundColor: '#000'
-},
+  },
+  cardView:{
+    
+  }
 });
