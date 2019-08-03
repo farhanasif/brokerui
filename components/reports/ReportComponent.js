@@ -85,10 +85,10 @@ export default class ReportComponent extends React.Component {
                     renderItem={({ item }) => (
                         <View style={styles.listview}>
                         <View style={styles.leftlist}>
-                            <Ionicons name="ios-paper" size={24} color="green" />
+                            <Ionicons name="ios-paper" size={24} color="#1862ae" />
                             <Text style={styles.item}>{item.name}</Text>
                         </View>
-                        <Ionicons name="ios-arrow-dropright" size={24} color="green" />
+                        <Ionicons name="ios-arrow-dropright" size={24} color="#1862ae" />
                         </View>
                     )}
                     ItemSeparatorComponent={this.renderSeparator}

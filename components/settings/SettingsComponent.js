@@ -99,10 +99,10 @@ export default class SettingsComponent extends React.Component {
                         />
                     </View>
                     <View style={{padding: 10, marginRight: 10}}>
-                        <Text style={{fontSize: 20, fontWeight: '800', color: '#1C2833'}}>MD FARHAN ASIF</Text>
-                        <Text style={{fontSize: 14, fontWeight: '200', color: '#1C2833'}}>+880 1717 898989</Text>
-                        <Text style={{fontSize: 14, fontWeight: '200', color: '#1C2833'}}>xyz@gmail.com</Text>
-                        <Text style={{fontSize: 14, fontWeight: '200', color: '#1C2833'}}>CLIENT CODE: 2209073</Text>
+                        <Text style={{fontSize: 20, fontWeight: '800', color: '#1862ae'}}>MD FARHAN ASIF</Text>
+                        <Text style={{fontSize: 14, fontWeight: '200', color: '#1862ae'}}>+880 1717 898989</Text>
+                        <Text style={{fontSize: 14, fontWeight: '200', color: '#1862ae'}}>xyz@gmail.com</Text>
+                        <Text style={{fontSize: 14, fontWeight: '600', color: '#1862ae'}}>CLIENT CODE: 2209073</Text>
                     </View>
                 </View>
                 <View style={styles.container}>
@@ -111,10 +111,10 @@ export default class SettingsComponent extends React.Component {
                     renderItem={({ item }) => (
                         <View style={styles.listview}>
                         <View style={styles.leftlist}>
-                            <Ionicons name={item.lefticon} size={26} color="green" style={{paddingRight:5}}/>
+                            <Ionicons name={item.lefticon} size={26} color="#1862ae" style={{paddingRight:5}}/>
                             <Text style={styles.item}>{item.name}</Text>
                         </View>
-                        <Ionicons name="ios-arrow-forward" size={24} color="green" />
+                        <Ionicons name="ios-arrow-forward" size={24} color="#1862ae" />
                         </View>
                     )}
                     ItemSeparatorComponent={this.renderSeparator}

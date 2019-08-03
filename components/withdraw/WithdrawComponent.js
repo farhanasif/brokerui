@@ -150,7 +150,7 @@ export default class WithdrawComponent extends React.Component {
                         type="solid"
                         raised
                         containerStyle={{width: width/2}}
-                        buttonStyle={{backgroundColor: 'green',}}
+                        buttonStyle={{backgroundColor: '#1862ae',}}
                         titleStyle={{color: 'white'}}
                     />
                 </View>
@@ -158,7 +158,7 @@ export default class WithdrawComponent extends React.Component {
                     <FlatList
                         data={item_data}
                         renderItem={({ item, key }) => (
-                            <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#ee0979', '#ff6a00', ]} style={styles.cardView} key={key}>
+                            <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#104881', '#1CB5E0', ]} style={styles.cardView} key={key}>
                             
                                 <View style={{padding: 5, flexDirection: 'row', alignItems: 'flex-end', justifyContent:'space-between'}}>
                                     <Text style={{color:'#FFF', marginTop: 5}}>{item.created_at}</Text>
