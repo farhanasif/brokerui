@@ -11,7 +11,7 @@ const MusicRoute = () => <Text>Music</Text>;
 
 const AlbumsRoute = () => <Text>Albums</Text>;
 
-const RecentsRoute = () => <Text>Recents</Text>;
+const RecentsRoute = () => <Text>Withdraw</Text>;
 
 const NavigatorMenu = createStackNavigator(
   {
@@ -36,8 +36,9 @@ export default class App extends React.Component {
     routes: [
       { key: 'market', title: 'Market', icon: 'business', color: '#000' },
       { key: 'news', title: 'News', icon: 'web', color: '#000' },
-      { key: 'recents', title: 'Portfolio', icon: 'inbox', color: '#000' },
-      { key: 'more', title: 'More', icon: 'reorder', color: '#000' },
+      { key: 'withdraw', title: 'Withdraw', icon: 'clear-all', color: '#000' },
+      { key: 'reports', title: 'Reports', icon: 'filter-none', color: '#000' },
+      { key: 'settings', title: 'Settings', icon: 'reorder', color: '#000' },
     ],
   };
 
@@ -46,8 +47,9 @@ export default class App extends React.Component {
   _renderScene = BottomNavigation.SceneMap({
     market: AppContainer,
     news: NewsComponent,
-    recents: RecentsRoute,
-    more: RecentsRoute,
+    withdraw: RecentsRoute,
+    reports: RecentsRoute,
+    settings: RecentsRoute,
   });
 
   render() {
