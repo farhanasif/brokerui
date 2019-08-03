@@ -34,6 +34,8 @@ target 'brokerui' do
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'brokeruiTests' do
     inherit! :search_paths
     # Pods for testing

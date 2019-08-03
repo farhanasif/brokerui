@@ -3,6 +3,8 @@ import { AsyncStorage, View, Text, Modal, ScrollView, FlatList, RefreshControl, 
 import { Button } from 'react-native-elements';
 import {Appbar, Badge} from 'react-native-paper';
 
+import LinearGradient from 'react-native-linear-gradient';
+
 const {height, width} = Dimensions.get('window');
 const item_data = [
     {
@@ -156,97 +158,47 @@ export default class WithdrawComponent extends React.Component {
                     <FlatList
                         data={item_data}
                         renderItem={({ item, key }) => (
-                            <View style={{padding:10, marginLeft:5,}} key={key}>
+                            <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#ee0979', '#ff6a00', ]} style={styles.cardView} key={key}>
+                            
                                 <View style={{padding: 5, flexDirection: 'row', alignItems: 'flex-end', justifyContent:'space-between'}}>
-                                    <Text style={{color:'#689F38'}}>{item.created_at}</Text>
+                                    <Text style={{color:'#FFF', marginTop: 5}}>{item.created_at}</Text>
                                     {
                                         item.status == 1 ? 
                                         (
                                             <Badge style={{ backgroundColor: 'orange'}}>
-                                                <Text style={{color: 'white'}}>Pending</Text>
+                                                <Text style={{color: 'white', fontWeight: '800'}}>Pending</Text>
                                             </Badge>
                                         )
                                         :
                                         (
                                             <Badge style={ item.status == 5 ? { backgroundColor: 'green'} : { backgroundColor: 'red'}}>
-                                                <Text style={{color: 'white'}}>{ item.status == 5 ? 'Executed' : 'Cancelled'}</Text>
+                                                <Text style={{color: 'white', fontWeight: '800'}}>{ item.status == 5 ? 'Executed' : 'Cancelled'}</Text>
                                             </Badge>
                                         )
                                     }
                                     
                                 </View>
                                 <View style={{padding: 5, flexDirection: 'row', alignItems: 'flex-end', justifyContent:'space-between'}}>
-                                    <Text style={{fontSize:14, fontWeight:'bold'}}>Client Code: {item.client_code}</Text>
-                                    <Text>{item.name}</Text>
+                                    <Text style={{fontSize:14, fontWeight:'bold', color:'#FFF'}}>Client Code: {item.client_code}</Text>
+                                    <Text style={{color:'#FFF'}}>{item.name}</Text>
                                 </View>
                                 <View style={{padding: 5, flexDirection: 'row', alignItems: 'flex-end', justifyContent:'space-between'}}>
-                                    <Text>Bank Name: {item.bank_name}</Text>
+                                    <Text style={{color:'#FFF'}}>Bank Name: {item.bank_name}</Text>
                                 </View>
                                 <View style={{padding: 5, flexDirection: 'row', alignItems: 'flex-end', justifyContent:'space-between'}}>
-                                    <Text>Account No: {item.account_no}</Text>
+                                    <Text style={{color:'#FFF'}}>Account No: {item.account_no}</Text>
                                 </View>
                                 <View style={{padding: 5, flexDirection: 'row', alignItems: 'flex-end', justifyContent:'space-between'}}>
-                                    <Text style={{fontSize:14, fontWeight:'bold'}}>Amount: {item.amount}</Text>
+                                    <Text style={{fontSize:14, fontWeight:'bold', color:'#FFF', marginBottom: 5}}>Amount: {item.amount}</Text>
                                 </View>
                                 
-                            </View>
+                            
+                            </LinearGradient>
                         )}
                         keyExtractor={item => item.id}
-                        ItemSeparatorComponent={this.renderSeparator}
+                        //ItemSeparatorComponent={this.renderSeparator}
                     />
                 </View>
-                
-                {/*<View style={{ flex: 1, alignItems: 'flex-start', justifyContent: "center", padding: 10, margin: 10}}>
-                    <Badge containerStyle={{ backgroundColor: 'green', height: 36}}>
-                        <Text style={{fontSize: 15, fontWeight: "bold", color:"#FFF"}}>Cash Limit: {cash_limit} BDT</Text>
-                    </Badge>
-                </View>
-
-                
-                <List containerStyle={{paddingBottom: 100 }}>
-                    <FlatList
-                        data={item_data}
-                        renderItem={({ item, key }) => (
-                            <View style={{padding:10, marginLeft:5,}} key={key}>
-                                <View style={{padding: 5, flexDirection: 'row', alignItems: 'flex-end', justifyContent:'space-between'}}>
-                                    <Text style={{color:'#689F38'}}>{item.created_at}</Text>
-                                    {
-                                        item.status == 1 ? 
-                                        (
-                                            <Badge containerStyle={{ backgroundColor: 'orange'}}>
-                                                <Text style={{color: 'white'}}>Pending</Text>
-                                            </Badge>
-                                        )
-                                        :
-                                        (
-                                            <Badge containerStyle={ item.status == 5 ? { backgroundColor: 'green'} : { backgroundColor: 'red'}}>
-                                                <Text style={{color: 'white'}}>Executed</Text>
-                                            </Badge>
-                                        )
-                                    }
-                                    
-                                </View>
-                                <View style={{padding: 5, flexDirection: 'row', alignItems: 'flex-end', justifyContent:'space-between'}}>
-                                    <Text style={{fontSize:14, fontWeight:'bold'}}>Client Code: {item.client_code}</Text>
-                                    <Text>{item.name}</Text>
-                                </View>
-                                <View style={{padding: 5, flexDirection: 'row', alignItems: 'flex-end', justifyContent:'space-between'}}>
-                                    <Text>Bank Name: {item.bank_name}</Text>
-                                </View>
-                                <View style={{padding: 5, flexDirection: 'row', alignItems: 'flex-end', justifyContent:'space-between'}}>
-                                    <Text>Account No: {item.account_no}</Text>
-                                </View>
-                                <View style={{padding: 5, flexDirection: 'row', alignItems: 'flex-end', justifyContent:'space-between'}}>
-                                    <Text style={{fontSize:14, fontWeight:'bold'}}>Amount: {item.amount}</Text>
-                                </View>
-                                
-                            </View>
-                        )}
-                        keyExtractor={item => item.id}
-                        ItemSeparatorComponent={this.renderSeparator}
-                    />
-                </List>*/}
-
             </View>
         
         );
@@ -286,7 +238,37 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 12
     },
     container:{
-        marginBottom: 100,
-        paddingBottom: 100
-    }
+        marginBottom: 200,
+        paddingBottom: 30,
+    },
+    cardView: { 
+        marginHorizontal: 12,
+        marginVertical: 8, 
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 15,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 15
+    },
+    buttonText: {
+        fontSize: 18,
+        fontFamily: 'Gill Sans',
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
+    },
 });
