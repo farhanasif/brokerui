@@ -10,6 +10,8 @@ import WithdrawOrderComponent from './components/withdraw/WithdrawOrderComponent
 
 import ReportComponent from './components/reports/ReportComponent';
 
+import SettingsComponent from './components/settings/SettingsComponent';
+
 console.disableYellowBox = true;
 
 const MusicRoute = () => <Text>Music</Text>;
@@ -48,12 +50,23 @@ const WithdrawMenu = createStackNavigator({
 );
 
 const ReportMenu = createStackNavigator({
-  ReportHome: {
-    screen: ReportComponent,
+    ReportHome: {
+      screen: ReportComponent,
+    },
+  },
+  {
+    initialRouteName: 'ReportHome',
+    headerMode: 'none',
+  },
+);
+
+const SettingsMenu = createStackNavigator({
+  SettingsHome: {
+    screen: SettingsComponent,
   },
 },
 {
-  initialRouteName: 'ReportHome',
+  initialRouteName: 'SettingsHome',
   headerMode: 'none',
 },
 );
@@ -61,6 +74,7 @@ const ReportMenu = createStackNavigator({
 const AppContainer = createAppContainer(NavigatorMenu);
 const WithdrawContainer = createAppContainer(WithdrawMenu);
 const ReportContainer = createAppContainer(ReportMenu);
+const SettingsContainer = createAppContainer(SettingsMenu);
 
 export default class App extends React.Component {
   state = {
@@ -79,7 +93,7 @@ export default class App extends React.Component {
   _renderScene = BottomNavigation.SceneMap({
     market: AppContainer,
     news: NewsComponent,
-    settings: RecentsRoute,
+    settings: SettingsContainer,
     reports: ReportContainer,
     withdraw: WithdrawContainer,
   });
