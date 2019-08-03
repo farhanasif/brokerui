@@ -85,7 +85,7 @@ export default class SettingsComponent extends React.Component {
             }}>
                 <Appbar.Header style={styles.bottom}>
                     <Appbar.Content title="Settings"/>
-                    <Appbar.Action icon="md-checkbox-outline" onPress={this._onMore}/>
+                    <Appbar.Action icon="launch" onPress={this._onMore}/>
                 </Appbar.Header>
                 <View style={{flexDirection: 'row', alignItems: 'space-around', justifyContent: 'space-between'}}>
                     <View style={{padding: 10, marginLeft: 10}}>
