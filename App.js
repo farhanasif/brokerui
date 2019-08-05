@@ -3,6 +3,7 @@ import { BottomNavigation, Text } from 'react-native-paper';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HomeComponent from './components/HomeComponent';
 import DetailsComponent from './components/DetailsComponent';
+import ç from './components/BuySellComponent';
 import NewsComponent from './components/NewsComponent';
 
 import WithdrawComponent from './components/withdraw/WithdrawComponent';
@@ -11,6 +12,7 @@ import WithdrawOrderComponent from './components/withdraw/WithdrawOrderComponent
 import ReportComponent from './components/reports/ReportComponent';
 
 import SettingsComponent from './components/settings/SettingsComponent';
+import BuySellComponent from './components/BuySellComponent';
 
 console.disableYellowBox = true;
 
@@ -28,6 +30,9 @@ const NavigatorMenu = createStackNavigator(
     Details: {
       screen: DetailsComponent,
     },
+    BuySell: {
+      screen: BuySellComponent,
+    }   
   },
   {
     initialRouteName: 'Home',
