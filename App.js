@@ -11,6 +11,7 @@ import WithdrawComponent from './components/withdraw/WithdrawComponent';
 import WithdrawOrderComponent from './components/withdraw/WithdrawOrderComponent';
 
 import ReportComponent from './components/reports/ReportComponent';
+import OrderHistoryComponent from './components/reports/OrderHistoryComponent';
 
 import SettingsComponent from './components/settings/SettingsComponent';
 
@@ -61,6 +62,9 @@ const ReportMenu = createStackNavigator({
     ReportHome: {
       screen: ReportComponent,
     },
+    OrderHistory: {
+      screen: OrderHistoryComponent,
+    }
   },
   {
     initialRouteName: 'ReportHome',

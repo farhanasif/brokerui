@@ -251,7 +251,10 @@ export default class DetailsComponent extends Component {
         </ScrollView>
         
         <View style={styles.footer}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('BuySell')}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('BuySell',{
+            item: this.state.item,
+            action: 'Buy'
+          })}>
             <View
               style={{
                 backgroundColor: 'green',
@@ -272,7 +275,10 @@ export default class DetailsComponent extends Component {
               </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('BuySell',{
+            item: this.state.item,
+            action: 'Sell'
+          })}>
             <View
               style={{
                 backgroundColor: '#F54A26',

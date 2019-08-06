@@ -6,6 +6,7 @@ import {
   Platform,
   Dimensions,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
 import {Appbar} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -83,13 +84,15 @@ export default class ReportComponent extends React.Component {
                     <FlatList
                     data={list}
                     renderItem={({ item }) => (
-                        <View style={styles.listview}>
-                        <View style={styles.leftlist}>
-                            <Ionicons name="ios-paper" size={24} color="#1862ae" />
-                            <Text style={styles.item}>{item.name}</Text>
-                        </View>
-                        <Ionicons name="ios-arrow-dropright" size={24} color="#1862ae" />
-                        </View>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('OrderHistory')}>
+                          <View style={styles.listview}>
+                            <View style={styles.leftlist}>
+                                <Ionicons name="ios-paper" size={24} color="#1862ae" />
+                                <Text style={styles.item}>{item.name}</Text>
+                            </View>
+                            <Ionicons name="ios-arrow-dropright" size={24} color="#1862ae" />
+                          </View>
+                        </TouchableOpacity>
                     )}
                     ItemSeparatorComponent={this.renderSeparator}
                     //ListHeaderComponent={this.renderHeader}

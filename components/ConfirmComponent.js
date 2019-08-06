@@ -9,7 +9,7 @@ export default class ConfirmComponent extends React.Component {
   render() {
     return (
       <LinearGradient
-        colors={['#005C97', '#363795']}
+        colors={['#434343', '#000000']}
         style={{
           flex: 1,
           alignItems: 'center',
@@ -30,12 +30,12 @@ export default class ConfirmComponent extends React.Component {
             />
           </View>
 
-          <Text style={{ color: '#fff', fontSize: 15, fontWeight: '500' }}>
+          <Text style={{ color: '#fff', fontSize: 18, fontWeight: 'bold', paddingBottom: 20, }}>
             Your order is in queue successfully
           </Text>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Home')}
-            style={{ paddingVertical: 20 }}>
+            style={{ paddingVertical: 20, width: 140 }}>
             <LinearGradient
               colors={['#E0EAFC', '#CFDEF3']}
               style={{

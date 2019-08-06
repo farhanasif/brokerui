@@ -20,6 +20,8 @@ export default class BuySellComponents extends React.Component {
         image: 'http://uftcl.com/custom_files/user/',
         cash_limit: '3,460.00',
       },
+      item: null,
+      action: 'Sell',
       error: null,
       cash_limit: '3,460.00',
       request: 'Buy',
@@ -30,6 +32,24 @@ export default class BuySellComponents extends React.Component {
 
     this.arrayholder = [];
   }
+
+  componentWillMount() {
+    this.load();
+  }
+
+  load = async () => {
+    try {
+      const { navigation } = this.props;
+      //await this.setState({title: navigation.getParam('trade_code', 'NO-TITLE')})
+      //await this.setState({itemid: navigation.getParam('itemId', '0')})
+      await this.setState({ item: navigation.getParam('item', null) });
+      await this.setState({ action: navigation.getParam('action', 'Sell') });
+
+      //this.makeRemoteRequest();
+    } catch (e) {
+      console.error('Failed to load token.' + e);
+    }
+  };
 
   _goBack = () => this.props.navigation.goBack();
 
@@ -48,7 +68,7 @@ export default class BuySellComponents extends React.Component {
                 <Ionicons name="ios-apps" size={44} color="#363795" />
                 </View>
                 
-                <Text style={styles.header}>Buy ABBANK shares</Text>
+                <Text style={styles.header}>{this.state.action} {this.state.item.MKISTAT_INSTRUMENT_CODE} shares</Text>
                 <Text style={styles.subheader}>Step 1 of 2</Text>
             </View>
             <View style={styles.simpleBorder} />
